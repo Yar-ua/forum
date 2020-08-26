@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  timeout: 5000
+  host: db
+  username: postgres
+  password:
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: forum_development
+
+test:
+  <<: *default
+  database: forum_test
+
+production:
+  <<: *default
+  database: forum_production
+  username: forum
+  password: <%= ENV['FORUM_DATABASE_PASSWORD'] %>
