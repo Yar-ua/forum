@@ -1,0 +1,13 @@
+.card
+  .card-header
+    = link_to post.title, post
+  .card-body
+    = post.content
+  .card-footer
+    = post.created_at
+    .btn-group
+      = link_to edit_post_path(post), class: "btn btn-sm btn-warning" do
+        .fa.fa-edit Edit
+      = link_to post, class: "btn btn-sm btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do
+        .fa.fa-trash
+%p
