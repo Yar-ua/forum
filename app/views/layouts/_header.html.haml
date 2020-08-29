@@ -1,0 +1,42 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.sticky-top
+  %a.navbar-brand{:href => "/posts/fresh"} 
+    ForumEbase
+  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto
+      %li.nav-item{class: "#{'active font-weight-bold' if current_page?(posts_path)}"}
+        = link_to posts_path, class: 'nav-link' do
+          .fa.fa-fire
+          Top
+      %li.nav-item{class: "#{'active font-weight-bold' if current_page?(posts_path)}"}
+        = link_to posts_path, class: 'nav-link' do
+          .far.fa-clock
+          Fresh
+      /%li.nav-item{class: "#{'active font-weight-bold' if current_page?(new_post_path)}"}
+      /  = link_to new_post_path, class: 'nav-link' do
+      /    .fa.fa-plus
+      /    Create
+    %ul.navbar-nav.mr-right
+      - if current_user
+        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(edit_user_registration_path)}"}
+          = link_to edit_user_registration_path, class: 'nav-link' do
+            / - if current_user
+            /   = image_tag current_user, size: '30x30', alt: "#{current_user.email}", class: 'rounded-circle'
+            / - else
+            .fa.fa-user
+            = current_user.email
+        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(destroy_user_session_path)}"}
+          = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
+            .fa.fa-sign-out-alt
+            Log out
+      - else
+        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(new_user_registration_path)}"}
+          = link_to 'Register', new_user_registration_path, class: 'nav-link'
+        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(new_user_session_path)}"}
+          = link_to 'Login', new_user_session_path, class: 'nav-link'
+        /%li.nav-item{class: "#{'active font-weight-bold' if current_page?(privacy_policy_path)}"}
+        /  = link_to 'Политика Конфиденциальности', privacy_policy_path, class: 'nav-link'
+        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(user_google_oauth2_omniauth_authorize_path)}"}
+          = link_to user_google_oauth2_omniauth_authorize_path, class: 'nav-link' do
+            .fab.fa-google
